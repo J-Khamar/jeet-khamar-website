@@ -1,0 +1,255 @@
+.container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  color: #2a2a2a;
+  line-height: 1.5;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.homeLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.homeLink:hover .title {
+  color: #6b7280;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navLink {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.navLink:hover,
+.navLink.active {
+  color: #1a1a1a;
+}
+
+.main {
+  max-width: 520px;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 0 1.5rem 0;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.post {
+  margin-bottom: 0;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+.post h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+.date {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 0 0 0.375rem 0;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.post p:last-child {
+  margin: 0;
+  color: #374151;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 1.25rem 0;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.book {
+  margin-bottom: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.book:last-child {
+  border-bottom: none;
+}
+
+.book h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+  letter-spacing: -0.005em;
+}
+
+.author {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin: 0 0 0.625rem 0;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.book p:last-child {
+  margin: 0;
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.articleContent {
+  margin-top: 2rem;
+}
+
+.articleContent p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #374151;
+  font-weight: 400;
+  margin: 0 0 1.5rem 0;
+}
+
+.articleContent p:last-child {
+  margin-bottom: 0;
+}
+
+.thoughtLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin: -0.5rem;
+}
+
+.thoughtLink:hover {
+  background-color: #f1f3f4;
+  transform: translateX(2px);
+}
+
+.thoughtLink h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 2px;
+}
+
+.thoughtLink:hover h3 {
+  color: #1a1a1a;
+  text-decoration-color: #6b7280;
+}
+
+.comingSoon {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem 1rem;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+  }
+  
+  .nav {
+    gap: 1.25rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.25rem;
+    margin: 0 0 1rem 0;
+  }
+  
+  .post h3 {
+    font-size: 0.9rem;
+  }
+  
+  .date {
+    font-size: 0.7rem;
+  }
+  
+  .book h4 {
+    font-size: 0.95rem;
+  }
+  
+  .post p:last-child,
+  .book p:last-child,
+  .articleContent p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+}
