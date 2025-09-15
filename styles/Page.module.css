@@ -455,3 +455,105 @@
     margin: 0 0 1.25rem 0;
   }
 }
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .container {
+    color: #e5e7eb;
+    background: #111827;
+  }
+
+  .header {
+    border-bottom: 1px solid #374151;
+  }
+
+  .title {
+    color: #f9fafb;
+  }
+
+  .homeLink:hover .title {
+    color: #9ca3af;
+  }
+
+  .navLink {
+    color: #9ca3af;
+  }
+
+  .navLink:hover,
+  .navLink.active {
+    color: #f9fafb;
+  }
+
+  .pageTitle {
+    color: #f9fafb;
+  }
+
+  .post {
+    border-bottom: 1px solid #374151;
+  }
+
+  .post h3 {
+    color: #f9fafb;
+  }
+
+  .date {
+    color: #6b7280;
+  }
+
+  .post p:last-child {
+    color: #d1d5db;
+  }
+
+  .section h3 {
+    color: #f9fafb;
+    border-bottom: 1px solid #374151;
+  }
+
+  .book {
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .book h4 {
+    color: #f9fafb;
+  }
+
+  .author {
+    color: #6b7280;
+  }
+
+  .book p:last-child,
+  .articleContent p {
+    color: #d1d5db;
+  }
+
+  .thoughtLink:hover {
+    background-color: #1f2937;
+  }
+
+  .thoughtLink h3 {
+    color: #f9fafb;
+  }
+
+  .thoughtLink:hover h3 {
+    text-decoration-color: #9ca3af;
+  }
+
+  .comingSoon {
+    color: #6b7280;
+  }
+
+  /* Dark mode mobile styles */
+  @media (max-width: 768px) {
+    .header {
+      border-bottom: 2px solid #374151;
+    }
+
+    .section h3 {
+      border-bottom: 2px solid #374151;
+    }
+
+    .thoughtLink:active {
+      background-color: #1f2937;
+    }
+  }
+}

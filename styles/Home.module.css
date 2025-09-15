@@ -199,3 +199,52 @@
     width: auto;
   }
 }
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .container {
+    color: #e5e7eb;
+    background: #111827;
+  }
+
+  .header {
+    border-bottom: 1px solid #374151;
+  }
+
+  .title {
+    color: #f9fafb;
+  }
+
+  .navLink {
+    color: #9ca3af;
+  }
+
+  .navLink:hover {
+    color: #f9fafb;
+  }
+
+  .intro,
+  .description,
+  .contact {
+    color: #d1d5db;
+  }
+
+  .link {
+    color: #f9fafb;
+  }
+
+  .link:hover {
+    color: #9ca3af;
+  }
+
+  /* Dark mode mobile styles */
+  @media (max-width: 768px) {
+    .header {
+      border-bottom: 2px solid #374151;
+    }
+
+    .link:active {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
