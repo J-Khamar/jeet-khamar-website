@@ -527,7 +527,8 @@
   }
 
   .thoughtLink:hover {
-    background-color: #1f2937;
+    background-color: #374151;
+    transform: translateX(2px);
   }
 
   .thoughtLink h3 {
@@ -535,7 +536,8 @@
   }
 
   .thoughtLink:hover h3 {
-    text-decoration-color: #9ca3af;
+    color: #ffffff;
+    text-decoration-color: #d1d5db;
   }
 
   .comingSoon {
@@ -553,7 +555,8 @@
     }
 
     .thoughtLink:active {
-      background-color: #1f2937;
+      background-color: #4b5563;
+      transform: scale(0.98) translateX(2px);
     }
   }
 }
