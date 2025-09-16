@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+import ThemeToggle from '../components/ThemeToggle';
 
 export default function Home() {
   return (
@@ -15,10 +16,13 @@ export default function Home() {
       <div className={styles.container}>
         <header className={styles.header}>
           <h1 className={styles.title}>Jeet Khamar</h1>
-          <nav className={styles.nav}>
-            <Link href="/thoughts" className={styles.navLink}>Thoughts</Link>
-            <Link href="/engineering" className={styles.navLink}>Engineering</Link>
-          </nav>
+          <div className={styles.headerRight}>
+            <nav className={styles.nav}>
+              <Link href="/thoughts" className={styles.navLink}>Thoughts</Link>
+              <Link href="/engineering" className={styles.navLink}>Engineering</Link>
+            </nav>
+            <ThemeToggle />
+          </div>
         </header>
 
         <main className={styles.main}>

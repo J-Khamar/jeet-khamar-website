@@ -26,6 +26,12 @@
   letter-spacing: -0.01em;
 }
 
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .nav {
   display: flex;
   gap: 1.5rem;
@@ -90,6 +96,11 @@
     margin-bottom: 3rem;
     padding-bottom: 1.25rem;
     border-bottom: 2px solid #e9ecef;
+  }
+  
+  .headerRight {
+    width: 100%;
+    justify-content: space-between;
   }
   
   .title {
@@ -201,7 +212,7 @@
 }
 
 /* Dark mode styles */
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
   .container {
     color: #e5e7eb;
     background: #111827;
@@ -237,14 +248,15 @@
     color: #9ca3af;
   }
 
-  /* Dark mode mobile styles */
-  @media (max-width: 768px) {
-    .header {
-      border-bottom: 2px solid #374151;
-    }
+}
 
-    .link:active {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
+/* Dark mode mobile styles */
+@media (max-width: 768px) {
+  [data-theme="dark"] .header {
+    border-bottom: 2px solid #374151;
+  }
+
+  [data-theme="dark"] .link:active {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }

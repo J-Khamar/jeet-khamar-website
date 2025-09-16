@@ -1,0 +1,126 @@
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.05);
+}
+
+.toggle:active {
+  transform: scale(0.95);
+}
+
+.iconContainer {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+  color: #6b7280;
+}
+
+.icon.active {
+  color: #1a1a1a;
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.sun {
+  transform: rotate(180deg) scale(0.8);
+  opacity: 0;
+}
+
+.sun.active {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.moon {
+  transform: rotate(-180deg) scale(0.8);
+  opacity: 0;
+}
+
+.moon.active {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .icon {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .icon.active {
+  color: #f9fafb;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .toggle {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+  
+  .toggle:hover {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  
+  .toggle:active {
+    transform: scale(0.92);
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+@media (max-width: 768px) {
+  [data-theme="dark"] .toggle:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  
+  [data-theme="dark"] .toggle:active {
+    background: rgba(255, 255, 255, 0.16);
+  }
+}
+
+/* Smooth icon transitions */
+.toggle:hover .icon {
+  transform: scale(1.1);
+}
+
+.toggle:hover .icon.active {
+  transform: rotate(0deg) scale(1.1);
+}
+
+/* Accessibility */
+.toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+[data-theme="dark"] .toggle:focus {
+  box-shadow: 0 0 0 2px rgba(147, 197, 253, 0.5);
+}
