@@ -6,7 +6,7 @@
   color: #2a2a2a;
   line-height: 1.5;
   min-height: 100vh;
-  background: #f8f9fa;
+  background: #faf9f6;
 }
 
 .header {
@@ -212,51 +212,48 @@
 }
 
 /* Dark mode styles */
-[data-theme="dark"] {
-  .container {
-    color: #e5e7eb;
-    background: #111827;
-  }
+:global([data-theme="dark"]) .container {
+  color: #e5e7eb;
+  background: #111827;
+}
 
-  .header {
-    border-bottom: 1px solid #374151;
-  }
+:global([data-theme="dark"]) .header {
+  border-bottom: 1px solid #374151;
+}
 
-  .title {
-    color: #f9fafb;
-  }
+:global([data-theme="dark"]) .title {
+  color: #f9fafb;
+}
 
-  .navLink {
-    color: #9ca3af;
-  }
+:global([data-theme="dark"]) .navLink {
+  color: #9ca3af;
+}
 
-  .navLink:hover {
-    color: #f9fafb;
-  }
+:global([data-theme="dark"]) .navLink:hover {
+  color: #f9fafb;
+}
 
-  .intro,
-  .description,
-  .contact {
-    color: #d1d5db;
-  }
+:global([data-theme="dark"]) .intro,
+:global([data-theme="dark"]) .description,
+:global([data-theme="dark"]) .contact {
+  color: #d1d5db;
+}
 
-  .link {
-    color: #f9fafb;
-  }
+:global([data-theme="dark"]) .link {
+  color: #f9fafb;
+}
 
-  .link:hover {
-    color: #9ca3af;
-  }
-
+:global([data-theme="dark"]) .link:hover {
+  color: #9ca3af;
 }
 
 /* Dark mode mobile styles */
 @media (max-width: 768px) {
-  [data-theme="dark"] .header {
+  :global([data-theme="dark"]) .header {
     border-bottom: 2px solid #374151;
   }
 
-  [data-theme="dark"] .link:active {
+  :global([data-theme="dark"]) .link:active {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
