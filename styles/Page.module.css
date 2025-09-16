@@ -470,7 +470,7 @@
 /* Dark mode styles */
 :global([data-theme="dark"]) .container {
   color: #e5e7eb;
-  background: #111827;
+  background: #0D1126;
 }
 
 :global([data-theme="dark"]) .header {

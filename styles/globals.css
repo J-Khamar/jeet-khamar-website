@@ -81,7 +81,7 @@ body {
 
 [data-theme="dark"] body {
   color: #e5e7eb;
-  background: #111827;
+  background: #0D1126;
 }
 
 /* Also support system preference as fallback */
@@ -91,6 +91,6 @@ body {
   }
   body {
     color: #e5e7eb;
-    background: #111827;
+    background: #0D1126;
   }
 }
