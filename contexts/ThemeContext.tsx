@@ -10,13 +10,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Initialize with the theme that should already be set by the script
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.getAttribute('data-theme') as Theme || 'light';
-    }
-    return 'light';
-  });
+  const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -25,32 +19,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const initialTheme = savedTheme || systemTheme;
     
-    // Only update if different from what's already set
-    if (initialTheme !== theme) {
-      setTheme(initialTheme);
-      document.documentElement.setAttribute('data-theme', initialTheme);
-    }
+    setTheme(initialTheme);
+    setMounted(true);
     
-    // Short delay to ensure CSS has loaded
-    setTimeout(() => {
-      setMounted(true);
-    }, 150);
-  }, [theme]);
+    // Apply theme to document immediately
+    document.documentElement.setAttribute('data-theme', initialTheme);
+  }, []);
 
   useEffect(() => {
     if (mounted) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
-      
-      // Update CSS custom properties instantly
-      const root = document.documentElement;
-      if (theme === 'dark') {
-        root.style.setProperty('--bg-color', '#000000');
-        root.style.setProperty('--text-color', '#e5e7eb');
-      } else {
-        root.style.setProperty('--bg-color', '#faf9f6');
-        root.style.setProperty('--text-color', '#2a2a2a');
-      }
     }
   }, [theme, mounted]);
 
@@ -58,7 +37,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
-  // Show content immediately with loading class for first 150ms
+  // Don't hide content during hydration - show with loading state instead
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className={!mounted ? 'theme-loading' : ''}>
