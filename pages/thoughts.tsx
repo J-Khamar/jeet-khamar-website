@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Page.module.css';
-import ThemeToggle from '../components/ThemeToggle';
 
 export default function Thoughts() {
   return (
@@ -22,7 +21,6 @@ export default function Thoughts() {
               <Link href="/thoughts" className={`${styles.navLink} ${styles.active}`}>Thoughts</Link>
               <Link href="/engineering" className={styles.navLink}>Engineering</Link>
             </nav>
-            <ThemeToggle />
           </div>
         </header>
 

@@ -12,17 +12,8 @@ export default function Document() {
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                try {
-                  var savedTheme = localStorage.getItem('theme');
-                  var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                  var theme = savedTheme || systemTheme;
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {
-                  // Fallback to system preference if localStorage fails
-                  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                  }
-                }
+                // Always set dark theme
+                document.documentElement.setAttribute('data-theme', 'dark');
               })();
             `,
           }}

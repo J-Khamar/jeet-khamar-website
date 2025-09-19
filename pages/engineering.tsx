@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Page.module.css';
-import ThemeToggle from '../components/ThemeToggle';
 
 export default function Engineering() {
   return (
@@ -22,7 +21,6 @@ export default function Engineering() {
               <Link href="/thoughts" className={styles.navLink}>Thoughts</Link>
               <Link href="/engineering" className={`${styles.navLink} ${styles.active}`}>Engineering</Link>
             </nav>
-            <ThemeToggle />
           </div>
         </header>
 

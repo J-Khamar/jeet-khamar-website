@@ -3,12 +3,13 @@
   margin: 0 auto;
   padding: 4rem 2rem 2rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  color: #2a2a2a;
+  color: #e5e7eb;
   line-height: 1.5;
   height: 100vh;
   overflow: hidden;
-  background: #faf9f6;
-  /* Apply transitions only after page has loaded */
+  background: transparent;
+  position: relative;
+  z-index: 2;
 }
 
 .header {
@@ -17,16 +18,15 @@
   align-items: center;
   margin-bottom: 4rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid #374151;
 }
 
 .title {
   font-size: 1.25rem;
   font-weight: 500;
   margin: 0;
-  color: #1a1a1a;
+  color: #f9fafb;
   letter-spacing: -0.01em;
-  transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .headerRight {
@@ -41,7 +41,7 @@
 }
 
 .navLink {
-  color: #6b7280;
+  color: #9ca3af;
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 400;
@@ -50,7 +50,7 @@
 }
 
 .navLink:hover {
-  color: #1a1a1a;
+  color: #f9fafb;
 }
 
 .main {
@@ -71,62 +71,56 @@
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
-  color: #374151;
+  color: #d1d5db;
   font-weight: 400;
 }
 
 .link {
-  color: #1a1a1a;
+  color: #f9fafb;
   text-decoration: underline;
   font-weight: 600;
   transition: all 0.2s ease;
 }
 
 .link:hover {
-  color: #6b7280;
+  color: #9ca3af;
 }
 
 
-/* Mobile Styles - Keep desktop experience intact */
+/* Mobile Styles */
 @media (max-width: 768px) {
   .container {
     padding: 4rem 1.5rem 2rem;
     max-width: 100%;
-    /* Maintain desktop proportions */
   }
   
   .header {
-    /* Keep desktop layout */
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     margin-bottom: 4rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #374151;
   }
   
   .headerRight {
-    /* Keep desktop alignment */
     display: flex;
     align-items: center;
     gap: 1rem;
   }
   
   .title {
-    /* Keep desktop sizing */
     font-size: 1.25rem;
     font-weight: 500;
     letter-spacing: -0.01em;
   }
   
   .nav {
-    /* Keep desktop spacing */
     gap: 1.5rem;
   }
   
   .navLink {
-    /* Keep desktop styling */
     font-size: 0.95rem;
     font-weight: 400;
     -webkit-tap-highlight-color: transparent;
@@ -139,7 +133,6 @@
   
   .main {
     max-width: 580px;
-    /* Keep same content width as desktop */
   }
   
   .content {
@@ -149,7 +142,6 @@
   .intro,
   .description,
   .contact {
-    /* Keep desktop text sizing */
     font-size: 0.95rem;
     line-height: 1.5;
     font-weight: 400;
@@ -161,7 +153,7 @@
   }
   
   .link:active {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -174,6 +166,7 @@
   .header {
     gap: 1.25rem;
     margin-bottom: 2.5rem;
+    border-bottom: 1px solid #374151;
   }
   
   .title {
@@ -200,77 +193,3 @@
   }
 }
 
-/* Large phones in landscape */
-@media (max-width: 768px) and (orientation: landscape) {
-  .container {
-    padding: 2rem 2rem 1.5rem;
-  }
-  
-  .header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .nav {
-    gap: 2rem;
-    width: auto;
-  }
-}
-
-/* Apply transitions only after page has loaded to prevent flash */
-:global(:not(.theme-loading)) .container {
-  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Dark mode styles */
-:global([data-theme="dark"]) .container {
-  color: #e5e7eb;
-  background: transparent;
-  position: relative;
-  z-index: 2;
-}
-
-:global([data-theme="dark"]) .header {
-  border-bottom: 1px solid #374151;
-}
-
-:global([data-theme="dark"]) .title {
-  color: #f9fafb;
-}
-
-:global([data-theme="dark"]) .navLink {
-  color: #9ca3af;
-}
-
-:global([data-theme="dark"]) .navLink:hover {
-  color: #f9fafb;
-}
-
-:global([data-theme="dark"]) .intro,
-:global([data-theme="dark"]) .description,
-:global([data-theme="dark"]) .contact {
-  color: #d1d5db;
-}
-
-:global([data-theme="dark"]) .link {
-  color: #f9fafb;
-}
-
-:global([data-theme="dark"]) .link:hover {
-  color: #9ca3af;
-}
-
-/* Dark mode mobile styles - keep consistent with desktop */
-@media (max-width: 768px) {
-  :global([data-theme="dark"]) .header {
-    border-bottom: 1px solid #374151;
-  }
-
-  :global([data-theme="dark"]) .link:active {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}

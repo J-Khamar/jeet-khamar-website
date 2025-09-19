@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import ThemeToggle from '../components/ThemeToggle';
 
 export default function Home() {
   return (
@@ -21,7 +20,6 @@ export default function Home() {
               <Link href="/thoughts" className={styles.navLink}>Thoughts</Link>
               <Link href="/engineering" className={styles.navLink}>Engineering</Link>
             </nav>
-            <ThemeToggle />
           </div>
         </header>
 
