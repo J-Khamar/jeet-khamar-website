@@ -22,7 +22,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(initialTheme);
     setMounted(true);
     
-    // Apply theme to document
+    // Apply theme to document immediately
     document.documentElement.setAttribute('data-theme', initialTheme);
   }, []);
 
@@ -37,14 +37,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
-  // Prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
-
+  // Don't hide content during hydration - show with loading state instead
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
+      <div className={!mounted ? 'theme-loading' : ''}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   );
 }

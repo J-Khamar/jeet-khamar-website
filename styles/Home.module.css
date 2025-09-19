@@ -5,8 +5,10 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   color: #2a2a2a;
   line-height: 1.5;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background: #faf9f6;
+  /* Apply transitions only after page has loaded */
 }
 
 .header {
@@ -24,6 +26,7 @@
   margin: 0;
   color: #1a1a1a;
   letter-spacing: -0.01em;
+  transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .headerRight {
@@ -52,6 +55,8 @@
 
 .main {
   max-width: 580px;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
 }
 
 .content {
@@ -82,71 +87,75 @@
 }
 
 
-/* Enhanced Mobile Styles */
+/* Mobile Styles - Keep desktop experience intact */
 @media (max-width: 768px) {
   .container {
-    padding: 3rem 1.5rem 2rem;
+    padding: 4rem 1.5rem 2rem;
     max-width: 100%;
+    /* Maintain desktop proportions */
   }
   
   .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 2px solid #e9ecef;
+    /* Keep desktop layout */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
   }
   
   .headerRight {
-    width: 100%;
-    justify-content: space-between;
+    /* Keep desktop alignment */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
   
   .title {
-    font-size: 1.375rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    /* Keep desktop sizing */
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
   
   .nav {
-    gap: 2rem;
-    width: 100%;
+    /* Keep desktop spacing */
+    gap: 1.5rem;
   }
   
   .navLink {
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+    /* Keep desktop styling */
+    font-size: 0.95rem;
+    font-weight: 400;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
   
   .navLink:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
   }
   
   .main {
-    max-width: 100%;
+    max-width: 580px;
+    /* Keep same content width as desktop */
   }
   
   .content {
-    gap: 1.75rem;
+    gap: 1.2rem;
   }
   
   .intro,
   .description,
   .contact {
-    font-size: 1rem;
-    line-height: 1.6;
+    /* Keep desktop text sizing */
+    font-size: 0.95rem;
+    line-height: 1.5;
     font-weight: 400;
   }
   
   .link {
-    padding: 0.125rem 0;
-    border-radius: 2px;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
@@ -211,10 +220,18 @@
   }
 }
 
+/* Apply transitions only after page has loaded to prevent flash */
+:global(:not(.theme-loading)) .container {
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Dark mode styles */
 :global([data-theme="dark"]) .container {
   color: #e5e7eb;
-  background: #0D1126;
+  background: transparent;
+  position: relative;
+  z-index: 2;
 }
 
 :global([data-theme="dark"]) .header {
@@ -247,10 +264,10 @@
   color: #9ca3af;
 }
 
-/* Dark mode mobile styles */
+/* Dark mode mobile styles - keep consistent with desktop */
 @media (max-width: 768px) {
   :global([data-theme="dark"]) .header {
-    border-bottom: 2px solid #374151;
+    border-bottom: 1px solid #374151;
   }
 
   :global([data-theme="dark"]) .link:active {
