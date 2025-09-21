@@ -26,22 +26,21 @@ export default function Home() {
         <main className={styles.main}>
           <div className={styles.content}>
             <p className={styles.intro}>
-              I'm building <a href="https://www.rocket.new/" target="_blank" rel="noopener noreferrer" className={styles.link}>Rocket</a> to automate <a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className={styles.link}>software engineering</a>.
+              I'm building <a href="https://www.rocket.new/" target="_blank" rel="noopener noreferrer" className={styles.link}>Rocket</a> to automate <a href="https://en.wikipedia.org/wiki/Vibe_coding" target="_blank" rel="noopener noreferrer" className={styles.link}>software engineering</a>. I spend most of my time designing constrained in-flow agents and solving context engineering problems.
             </p>
             
             <p className={styles.description}>
-              I grew up in a town called Nairobi in Kenya. I then moved to India where I completed my undergraduate studies in Computer Science and Math, focusing on algorithms and statistical methods.
+              Originally from Nairobi, Kenya, I moved to India for my undergraduate studies in Computer Science and Math, where I developed a deep interest in machine learning algorithms and statistical methods.
             </p>
             
             <p className={styles.description}>
-              I've worked on building machine learning pipelines for production systems, fine-tuning large language models for specific domains, and solving statistical inference problems in real-world applications.
+              In the <a href="https://www.dhiwise.com/" target="_blank" rel="noopener noreferrer" className={styles.link}>past</a>, I have built production-grade machine learning pipelines, worked on similarity search problems, and fine-tuned large language models for domain-specific applications.
             </p>
             
             <p className={styles.contact}>
-              Reach out on <a href="https://www.linkedin.com/in/jeet-khamar-389003229/" target="_blank" rel="noopener noreferrer" className={styles.link}>linkedin</a> or by <a href="mailto:jeetkhamar2022@gmail.com" className={styles.link}>mail</a>.
+              Connect with me on <a href="https://www.linkedin.com/in/jeet-khamar-389003229/" target="_blank" rel="noopener noreferrer" className={styles.link}>LinkedIn</a> or via <a href="mailto:jeetkhamar2022@gmail.com" className={styles.link}>email</a>.
             </p>
           </div>
-          
         </main>
       </div>
     </>
