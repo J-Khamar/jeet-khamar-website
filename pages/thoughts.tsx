@@ -33,7 +33,7 @@ export default function Thoughts() {
             <article className={styles.post}>
               <Link href="/thoughts/call-me-jeet" className={styles.thoughtLink}>
                 <h3>जीत</h3>
-                <p className={styles.date}>January 2025</p>
+                <p className={styles.date}>January 15, 2025</p>
                 <p>
                   A brief introduction.
                 </p>
