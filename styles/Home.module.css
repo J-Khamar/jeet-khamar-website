@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #374151;
 }
@@ -54,7 +54,7 @@
 }
 
 .main {
-  max-width: 580px;
+  max-width: 600px;
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
 }
@@ -99,7 +99,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #374151;
   }
@@ -132,7 +132,7 @@
   }
   
   .main {
-    max-width: 580px;
+    max-width: 600px;
   }
   
   .content {
@@ -165,7 +165,7 @@
   
   .header {
     gap: 1.25rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     border-bottom: 1px solid #374151;
   }
   

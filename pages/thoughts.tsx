@@ -26,6 +26,9 @@ export default function Thoughts() {
 
         <main className={styles.main}>
           <h2 className={styles.pageTitle}>Thoughts</h2>
+          <p className={styles.description}>
+            A series of personal notes where I share my thoughts, feelings, and perspective — not just about the work I do, but how I see the world and myself.
+          </p>
           <div className={styles.content}>
             <article className={styles.post}>
               <Link href="/thoughts/call-me-jeet" className={styles.thoughtLink}>

@@ -26,6 +26,9 @@ export default function Engineering() {
 
         <main className={styles.main}>
           <h2 className={styles.pageTitle}>Engineering</h2>
+          <p className={styles.description}>
+            The hard lessons learned from building software, scaling machine learning systems, and solving context engineering problems.
+          </p>
           <div className={styles.content}>
             <p className={styles.comingSoon}>Coming soon.</p>
           </div>
