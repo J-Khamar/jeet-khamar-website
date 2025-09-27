@@ -30,15 +30,32 @@ export default function Thoughts() {
             A series of personal notes where I share my thoughts, feelings, and perspective — not just about the work I do, but how I see the world and myself.
           </p>
           <div className={styles.content}>
-            <article className={styles.post}>
-              <Link href="/thoughts/call-me-jeet" className={styles.thoughtLink}>
-                <h3>जीत</h3>
-                <p className={styles.date}>January 15, 2025</p>
-                <p>
-                  A brief introduction.
-                </p>
-              </Link>
-            </article>
+            {/* Featured Recent Posts */}
+            <section className={styles.featuredPosts}>
+              <h3 className={styles.archiveTitle}>Featured</h3>
+              <article className={styles.post}>
+                <Link href="/thoughts/what-comes-after-code" className={styles.thoughtLink}>
+                  <h3>What Comes After Code</h3>
+                  <p className={styles.date}>September 27, 2025 • 4 min read</p>
+                  <p>
+                    On the future of programming and what comes after traditional code.
+                  </p>
+                </Link>
+              </article>
+            </section>
+            
+            {/* Archive - Compact List for Older Posts */}
+            <section className={styles.archivePosts}>
+              <h3 className={styles.archiveTitle}>Archive</h3>
+              <div className={styles.compactList}>
+                <Link href="/thoughts/call-me-jeet" className={styles.compactLink}>
+                  <div className={styles.compactPost}>
+                    <span className={styles.compactTitle}>जीत</span>
+                    <span className={styles.compactDate}>Jan 15, 2025 • 2 min</span>
+                  </div>
+                </Link>
+              </div>
+            </section>
           </div>
         </main>
       </div>

@@ -27,7 +27,7 @@ export default function CallMeJeet() {
         <main className={styles.main}>
           <article>
             <h2 className={styles.pageTitle}>जीत</h2>
-            <p className={styles.date}>January 15, 2025</p>
+            <p className={styles.date}>January 15, 2025 • 2 min read</p>
             
             <div className={styles.articleContent}>
               <p>
