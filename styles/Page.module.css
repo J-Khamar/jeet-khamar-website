@@ -121,7 +121,7 @@
 .archiveTitle {
   font-size: 1rem;
   font-weight: 500;
-  margin: 0 0 0.25rem 0;
+  margin: 0.5rem 0 0.25rem 0;
   color: #9ca3af;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -319,6 +319,19 @@
 
 .articleContent p:last-child {
   margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #f9fafb;
+  margin: 2rem 0 0.75rem 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.articleContent .sectionTitle:first-child {
+  margin-top: 0;
 }
 
 .link {

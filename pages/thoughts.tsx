@@ -34,11 +34,11 @@ export default function Thoughts() {
             <section className={styles.featuredPosts}>
               <h3 className={styles.archiveTitle}>Featured</h3>
               <article className={styles.post}>
-                <Link href="/thoughts/what-comes-after-code" className={styles.thoughtLink}>
-                  <h3>What Comes After Code</h3>
-                  <p className={styles.date}>September 27, 2025 • 4 min read</p>
+                <Link href="/thoughts/two-years-of-learning" className={styles.thoughtLink}>
+                  <h3>Two Years of Learning in Two Minutes</h3>
+                  <p className={styles.date}>March 8, 2026 • 6 min read</p>
                   <p>
-                    On the future of programming and what comes after traditional code.
+                    Things I have learned in the two years since stepping into the real world.
                   </p>
                 </Link>
               </article>
@@ -48,10 +48,10 @@ export default function Thoughts() {
             <section className={styles.archivePosts}>
               <h3 className={styles.archiveTitle}>Archive</h3>
               <div className={styles.compactList}>
-                <Link href="/thoughts/call-me-jeet" className={styles.compactLink}>
+                <Link href="/thoughts/what-comes-after-code" className={styles.compactLink}>
                   <div className={styles.compactPost}>
-                    <span className={styles.compactTitle}>जीत</span>
-                    <span className={styles.compactDate}>Jan 15, 2025 • 2 min</span>
+                    <span className={styles.compactTitle}>What Comes After Code</span>
+                    <span className={styles.compactDate}>Sep 27, 2025 • 4 min</span>
                   </div>
                 </Link>
               </div>
