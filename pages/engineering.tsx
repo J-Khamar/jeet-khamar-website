@@ -30,7 +30,18 @@ export default function Engineering() {
             The hard lessons learned from building software, scaling machine learning systems, and solving context engineering problems.
           </p>
           <div className={styles.content}>
-            <p className={styles.comingSoon}>Coming soon.</p>
+            <section className={styles.featuredPosts}>
+              <h3 className={styles.archiveTitle}>Featured</h3>
+              <article className={styles.post}>
+                <Link href="/engineering/staying-unstuck-at-a-startup" className={styles.thoughtLink}>
+                  <h3>Staying Unstuck at a Startup</h3>
+                  <p className={styles.date}>March 14, 2026 • 8 min read</p>
+                  <p>
+                    At a startup, being stuck isn't a minor annoyance. It's an emergency. Here's how I've learned to never fully stop moving.
+                  </p>
+                </Link>
+              </article>
+            </section>
           </div>
         </main>
       </div>
