@@ -35,7 +35,7 @@ export default function StayingUnstuck() {
               </p>
 
               <p>
-                I've spent the last two years building AI agents and backend infrastructure at a startup. I'm not a ten-year veteran. But I've noticed something in that time: the engineers around me who deliver consistently aren't necessarily the most talented. They're the ones who handle confusion well. When they hit a wall - AWS Bedrock returning cryptic stream errors because the SDK uses camelCase error codes in some regions and PascalCase in others, or Claude returning <code>tool_use</code> blocks with null content that crash the message pipeline, or the product scope shifting overnight so half the orchestration logic needs rethinking (all three of these have happened to me in the last few months) - they don't freeze. They find a way to keep going.
+                I've spent the last two years building AI agents and backend infrastructure at a startup. I'm not a ten-year veteran. But I've noticed something in that time: the engineers around me who deliver consistently aren't necessarily the most talented. They're the ones who handle confusion well. When they hit a wall, they don't freeze. They find a way to keep going.
               </p>
 
               <p>
@@ -49,11 +49,7 @@ export default function StayingUnstuck() {
               </p>
 
               <p>
-                At a startup, what stops you is usually <em>your own knowledge</em>. There is no platform team. You are the platform team, the data team, and half the frontend team. Your obstacles tend to look like this: you need to stream LLM responses to the client via SSE, but your compression middleware is silently buffering the stream and nothing comes through until the whole response is done. Your ECS deploy script isn't pausing Kafka consumers before replacing containers, so in-flight research jobs are getting dropped mid-execution - and you've never written a deploy script before. Multiple Kafka consumers are processing task status events at the same time, and they're overwriting each other's updates to the same chat message, but only under load. The document parsing service you depend on (LlamaParse) times out intermittently, and nobody on the team has dug into its polling API to understand why.
-              </p>
-
-              <p>
-                What all of these have in common is that <strong>the obstacle is a gap in what you know, not a person standing in your way.</strong> In a big company, you'd go find the expert. At a startup, you have to <em>become</em> the expert, at least enough to get past the problem.
+                At a startup, what stops you is usually <em>your own knowledge</em>. There is no platform team. You are the platform team, the data team, and half the frontend team. A couple of months ago, one of our streaming endpoints just stopped streaming. No errors, no timeouts - the response would arrive all at once instead of token by token. I spent hours looking at the handler, the connection logic, the model configuration. The problem turned out to be the compression middleware. Gzip was buffering the entire response before sending it. A thirteen-line fix. <strong>The obstacle is almost always a gap in what you know, not a person standing in your way.</strong> In a big company, you'd go find the expert. At a startup, you have to <em>become</em> the expert, at least enough to get past the problem.
               </p>
 
               <h3 className={styles.sectionTitle}>Most of the time you're stuck, you're actually just afraid</h3>
@@ -81,61 +77,41 @@ export default function StayingUnstuck() {
               </p>
 
               <p>
-                For instance, I know at a high level how Kafka consumer groups rebalance partitions. I couldn't implement a consumer from scratch. But when research jobs started getting processed twice after a deploy, I could reason about whether it was a rebalancing issue or a duplicate-publish issue. That distinction saved me a day, because it pointed me straight to the deploy script - we weren't pausing consumers before swapping containers, so messages were being re-delivered during the rebalance.
+                Earlier this year, our LLM provider started intermittently failing - empty streams, throttling errors, sometimes just silence. I needed to build retry logic, but the errors weren't consistent. Some came back as HTTP 429s, some as stream-level exceptions, and some as connections that just produced nothing. Because I'd spent time understanding how the streaming protocol actually works - the binary event format, the way errors surface at different layers - I could classify which errors were worth retrying and which meant something was fundamentally wrong. In the process I discovered that the provider uses PascalCase error codes in some responses and camelCase in others. Maybe that's documented somewhere. I didn't find it.
               </p>
 
               <p>
-                Likewise, I know roughly how AWS Bedrock streams responses via its EventStream binary protocol - enough that when our Claude streaming broke in a specific region, I had an instinct that it was an error-code format issue rather than a networking problem. I know roughly how Redis Streams differ from Kafka topics - enough that when we migrated our event system from one to the other, I could anticipate where the semantics wouldn't map cleanly.
-              </p>
-
-              <p>
-                <strong>You don't need deep expertise to stay unstuck. You need orientation - a rough map that tells you which direction to walk.</strong> I try to build these maps intentionally. When I encounter something new - a new LLM provider's streaming protocol, an AWS service I haven't used, a Go concurrency pattern I'm unfamiliar with - I spend an hour or two reading enough to explain it to a colleague. Sometimes I write it up. That's usually sufficient. The goal is never mastery. The goal is to not be <em>completely</em> lost when something goes sideways.
+                <strong>You don't need deep expertise to stay unstuck. You need orientation - a rough map that tells you which direction to walk.</strong> I try to build these maps intentionally. When I encounter something new, I spend an hour or two reading enough to explain it to a colleague. Sometimes I write it up. The goal is never mastery. The goal is to not be <em>completely</em> lost when something goes sideways.
               </p>
 
               <h3 className={styles.sectionTitle}>AI agents are the best research partner I've ever had</h3>
 
               <p>
-                This is the part that feels genuinely new to me - the part that wouldn't have been possible even two years ago. When I get stuck on something outside my area of knowledge, the first thing I do now is throw an AI agent at it.
+                This is the part that feels genuinely new to me - the part that wouldn't have been possible even two years ago. When I get stuck on something outside my area of knowledge, the first thing I do now is throw an AI agent at it. Not to write my code - to <em>investigate</em>. I point it at an unfamiliar codebase, or a provider's SDK, or a wall of logs, and ask it a specific question. It comes back with something useful about a third of the time. That's an incredible hit rate when the alternative is spending hours reading source code I've never seen before, or firing off a support ticket and waiting a day.
               </p>
 
               <p>
-                Here's a specific example. We were building an agentic report-editing loop - a long-running SSE stream where Claude makes tool calls to search-and-replace sections of a research report. The agent kept crashing when Bedrock returned <code>tool_use</code> blocks with null content. My first instinct was that we were constructing the message history wrong. I spent an hour staring at the message conversion code. Instead, I pointed an AI agent at our Bedrock adapter and the Anthropic API docs and asked "under what conditions does Claude return a tool_use block with null content?" It came back with the answer in minutes: when the model's response is truncated due to max tokens, the final tool_use block can be incomplete. The fix was a three-line nil check in the message converter. Total time stuck: twenty minutes, instead of what could have been half a day of guessing.
-              </p>
-
-              <p>
-                I do this all the time now. Bedrock streaming errors in a specific AWS region? I ask the agent to compare the error code formats across SDK versions - that's how I found the camelCase-vs-PascalCase bug that AWS themselves have <a href="https://github.com/aws/aws-sdk-java-v2/issues/6575" target="_blank" rel="noopener noreferrer" className={styles.link}>documented as a known issue</a>. Kafka consumers mysteriously reprocessing messages? I describe the deployment sequence and ask the agent what could cause a rebalance. Authorization headers not being extracted correctly? I've been through three rounds of that one - different header keys, different casing conventions - and each time the agent helped me narrow it down faster than I would have by reading middleware code line by line.
-              </p>
-
-              <p>
-                <strong>I treat AI agents like a colleague who's read everything but built nothing.</strong> They can scan an entire codebase in seconds and surface things I'd never have found by searching manually. But they also get things wrong constantly - confidently, convincingly wrong. So I never take the answer at face value. I use it as a starting point, then verify. Even when the agent is wrong, though, it usually narrows the search. It turns "I have no idea what's happening" into "I have two or three theories to test". That's the difference between being stuck and being in motion.
+                <strong>I treat AI agents like a colleague who's read everything but built nothing.</strong> They can scan an entire codebase in seconds and surface things I'd never have found by searching manually. But they also get things wrong constantly - confidently, convincingly wrong. So I never take the answer at face value. I use it as a starting point, then verify. Even when the agent is wrong, it usually narrows the search. It turns "I have no idea what's happening" into "I have two or three theories to test". That's the difference between being stuck and being in motion.
               </p>
 
               <h3 className={styles.sectionTitle}>Always have a second thing going</h3>
 
               <p>
-                Whenever I can, I keep two workstreams active. One is the main thing - whatever has a deadline or a customer waiting. The other is something lower-stakes: wiring up Prometheus metrics, improving structured logging, building out Grafana dashboards, or hardening error handling across the agent pipeline. When the main thing stalls - maybe I'm waiting for an AWS IAM policy change, or the CTO needs to decide whether we're cutting a feature - I switch to the second thing.
+                Whenever I can, I keep two workstreams active. One is the main thing - whatever has a deadline or a customer waiting. The other is something lower-stakes that I can pick up and put down without consequence. When the main thing stalls, I switch to the second thing.
               </p>
 
               <p>
-                The important part is that the second thing is genuinely <em>lower-stakes</em>. I've made the mistake of running two customer-facing features in parallel, and it's awful. One of them is always frozen, and your founder can see it. <strong>The second workstream should be something you can drop the instant the main one unblocks.</strong> If you'd feel guilty dropping it, it's too important to be your backup task.
-              </p>
-
-              <p>
-                At a startup this is easier than it sounds, because the list of useful-but-not-urgent work is infinite. There's always a NoOp adapter to replace with a real implementation, a Slack notification to wire up for a failure mode nobody's monitoring, a context propagation bug where <code>job_id</code> isn't threading through to async paths. I keep a running list of these in my notes and pull from it whenever I'm waiting on something.
+                The important part is that the second thing is genuinely <em>lower-stakes</em>. I've made the mistake of running two urgent things in parallel, and it's awful. One of them is always frozen, and your founder can see it. <strong>The second workstream should be something you can drop the instant the main one unblocks.</strong> If you'd feel guilty dropping it, it's too important to be your backup task.
               </p>
 
               <h3 className={styles.sectionTitle}>Do the uncertain work first</h3>
 
               <p>
-                When I start a new project - especially an agent pipeline - I now always begin with whatever part I'm least confident about. Usually that's the integration boundary: the place where my system talks to an external service or processes an unfamiliar data format. The Exa search API, the LlamaParse document pipeline, the Bedrock streaming protocol - these are the places where things go wrong.
+                When I start a new project - especially an agent pipeline - I now always begin with whatever part I'm least confident about. Usually that's the integration boundary: the place where my system talks to an external service or processes an unfamiliar data format.
               </p>
 
               <p>
-                I used to do the opposite. I'd start with the parts I knew how to build, get some momentum, and leave the uncertain parts for later. This feels good in the short term. You're writing code, making progress, feeling productive. But it's a bad strategy, because you discover the hard problems <em>after</em> you've already committed to an architecture that might not accommodate them. The first few days of a project feel miserable when you work this way - you're wrestling with the hardest part and have nothing to show for it - but miserable on day two is much better than miserable on day twelve.
-              </p>
-
-              <p>
-                Now I force myself to prototype the scariest integration on day one. When we built the deep research pipeline - a multi-agent system where a controller delegates to research and business intelligence sub-agents, each with their own web search tools - I didn't start with the orchestration logic. I started by getting a single Exa search query working end-to-end, from the agent's tool call through to parsed results. It was ugly. But it confirmed the integration was viable before I'd written a thousand lines of orchestration code around it.
+                I used to do the opposite. I'd start with the parts I knew how to build, get some momentum, and leave the uncertain parts for later. This feels good in the short term. You're writing code, making progress, feeling productive. But it's a bad strategy, because you discover the hard problems <em>after</em> you've already committed to an architecture that might not accommodate them. Miserable on day two is much better than miserable on day twelve.
               </p>
 
               <h3 className={styles.sectionTitle}>Ask before you're drowning</h3>
@@ -145,11 +121,7 @@ export default function StayingUnstuck() {
               </p>
 
               <p>
-                "I'm stuck" is a bad message. "Bedrock is returning empty streams intermittently in us-east-1, I've confirmed it's not a timeout on our side, and I think it might be related to the SigV4 signing on long-running requests but I can't find anything in the AWS docs" is a useful message. Even if your CTO can't solve it, they might know something you don't - maybe they've seen a similar issue with another AWS service, or they can escalate to your AWS support contact.
-              </p>
-
-              <p>
-                The trick is that your request for help should demonstrate that you've already done work. People - especially busy people at startups - are happy to give you the last 20% of the answer when you've clearly done the first 80% of the digging yourself.
+                "I'm stuck" is a bad message. "I've confirmed X, ruled out Y, and I think it might be Z but I can't find docs on it" is a useful message. Even if your CTO can't solve it directly, they might know something you don't. The trick is that your request for help should demonstrate that you've already done work. People - especially busy people at startups - are happy to give you the last 20% of the answer when you've clearly done the first 80% yourself.
               </p>
 
               <h3 className={styles.sectionTitle}>Final thoughts</h3>
